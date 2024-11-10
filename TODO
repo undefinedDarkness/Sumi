@@ -1,4 +1,4 @@
-- [] Offload drawing to worker
+- [X] Offload drawing to worker
 - [] Examples
 - [] Store 
 - [] Images

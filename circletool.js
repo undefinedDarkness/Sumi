@@ -1,5 +1,5 @@
-const canvas = document.querySelector('#tools')
-const ctx = canvas.getContext('2d');
+const tcanvas = document.querySelector('#tools')
+const tctx = tcanvas.getContext('2d');
 
 let isDrawingCircle = false;
 let startX, startY;
@@ -25,9 +25,9 @@ function drawCircle(x, y, radius) {
     ctx.strokeStyle = f
 }
 
-// Function to clear the canvas and redraw
+// Function to clear the tcanvas and redraw
 function clearAndRedraw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, tcanvas.width, tcanvas.height);
     if (currentCircle) {
         drawCircle(currentCircle.x, currentCircle.y, currentCircle.radius);
     }
@@ -48,9 +48,9 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Mouse down event listener
-canvas.addEventListener('mousedown', (e) => {
+tcanvas.addEventListener('mousedown', (e) => {
     if (isDrawingCircle) {
-        const rect = canvas.getBoundingClientRect();
+        const rect = tcanvas.getBoundingClientRect();
         startX = e.clientX - rect.left;
         startY = e.clientY - rect.top;
         
@@ -68,7 +68,7 @@ canvas.addEventListener('mousedown', (e) => {
             updateTooltip(e.clientX, e.clientY, currentCircle);
             
             // Clear the circle
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0, 0, tcanvas.width, tcanvas.height);
             
             // Remove tooltip after 3 seconds
             setTimeout(removeTooltip, 3000);
@@ -85,9 +85,9 @@ canvas.addEventListener('mousedown', (e) => {
 });
 
 // Mouse move event listener
-canvas.addEventListener('mousemove', (e) => {
+tcanvas.addEventListener('mousemove', (e) => {
     if (isDrawingCircle && currentCircle) {
-        const rect = canvas.getBoundingClientRect();
+        const rect = tcanvas.getBoundingClientRect();
         const currentX = e.clientX - rect.left;
         const currentY = e.clientY - rect.top;
         
@@ -99,8 +99,8 @@ canvas.addEventListener('mousemove', (e) => {
     }
 });
 
-// Clean up tooltip when mouse leaves canvas
-canvas.addEventListener('mouseleave', () => {
+// Clean up tooltip when mouse leaves tcanvas
+tcanvas.addEventListener('mouseleave', () => {
     if (isDrawingCircle && !currentCircle) {
         removeTooltip();
     }
