@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'Iosevka';
+        src: url('./iosevka.woff2') format('woff2');
+    }
+
+    *:read-write:focus {
+        outline: none;
+      }
+
+    code {
+        font-family: 'Iosevka', monospace;
+    }
+
+  
+}

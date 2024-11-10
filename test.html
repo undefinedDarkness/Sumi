@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #drawingCanvas {
+            border: 1px solid black;
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="drawingCanvas" width="600" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('drawingCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        let isDrawingCircle = false;
+        let startX, startY;
+        let currentCircle = null;
+
+        // Function to draw a circle
+        function drawCircle(x, y, radius) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.strokeStyle = 'black';
+            ctx.stroke();
+        }
+
+        // Function to clear the canvas and redraw
+        function clearAndRedraw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (currentCircle) {
+                drawCircle(currentCircle.x, currentCircle.y, currentCircle.radius);
+            }
+        }
+
+        // Calculate radius between two points
+        function getRadius(x1, y1, x2, y2) {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+
+        // Key press event listener
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'c' || e.key === 'C') {
+                isDrawingCircle = true;
+                currentCircle = null;
+            }
+        });
+
+        // Mouse down event listener
+        canvas.addEventListener('mousedown', (e) => {
+            if (isDrawingCircle) {
+                const rect = canvas.getBoundingClientRect();
+                startX = e.clientX - rect.left;
+                startY = e.clientY - rect.top;
+                
+                if (!currentCircle) {
+                    // Start new circle
+                    currentCircle = {
+                        x: startX,
+                        y: startY,
+                        radius: 0
+                    };
+                } else {
+                    // Finish circle and log to console
+                    console.log('Circle created:', currentCircle);
+                    isDrawingCircle = false;
+                    currentCircle = null;
+                }
+            }
+        });
+
+        // Mouse move event listener
+        canvas.addEventListener('mousemove', (e) => {
+            if (isDrawingCircle && currentCircle) {
+                const rect = canvas.getBoundingClientRect();
+                const currentX = e.clientX - rect.left;
+                const currentY = e.clientY - rect.top;
+                
+                currentCircle.radius = getRadius(startX, startY, currentX, currentY);
+                clearAndRedraw();
+            }
+        });
+    </script>
+</body>
+</html>
