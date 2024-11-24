@@ -606,6 +606,10 @@ code {
   }
 }
 
+.pointer-events-none {
+  pointer-events: none;
+}
+
 .absolute {
   position: absolute;
 }
@@ -638,6 +642,18 @@ code {
   margin-right: auto;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
+.mr-4 {
+  margin-right: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -654,6 +670,10 @@ code {
   display: grid;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-\[95vh\] {
   height: 95vh;
 }
@@ -666,6 +686,10 @@ code {
   max-height: 96vh;
 }
 
+.w-\[1em\] {
+  width: 1em;
+}
+
 .w-\[35\%\] {
   width: 35%;
 }
@@ -674,20 +698,12 @@ code {
   width: 100%;
 }
 
-.w-\[1em\] {
-  width: 1em;
-}
-
-.max-w-\[1em\] {
-  max-width: 1em;
+.cursor-move {
+  cursor: move;
 }
 
 .cursor-pointer {
   cursor: pointer;
-}
-
-.cursor-move {
-  cursor: move;
 }
 
 .resize {
@@ -696,6 +712,10 @@ code {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-rows-2 {
+  grid-template-rows: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -736,6 +756,10 @@ code {
 
 .border-r-\[1px\] {
   border-right-width: 1px;
+}
+
+.border-b {
+  border-bottom-width: 1px;
 }
 
 .border-black {
@@ -800,8 +824,31 @@ code {
   padding-bottom: 1px;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
 .font-ui {
   font-family: Iosevka, monospace;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.text-red-400 {
+  --tw-text-opacity: 1;
+  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -812,11 +859,6 @@ code {
 .text-yellow-500 {
   --tw-text-opacity: 1;
   color: rgb(234 179 8 / var(--tw-text-opacity));
-}
-
-.text-red-400 {
-  --tw-text-opacity: 1;
-  color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
 .filter {

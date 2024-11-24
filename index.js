@@ -15,6 +15,46 @@ const repeat = (times, fn) => {
 
 const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
+
+function selectExample(eg) {
+    const examples = {
+        'low': `
+        _.color('black');
+const t = _.turtle();
+fori(0, 32, 1, i => {
+    repeat(i, () => {
+        t.forward(i);
+        t.right(358 / i);
+    });
+    t.backward(Math.sqrt(i));
+});
+        `,
+        'rotcircle': `
+const t = _.turtle();
+// repeat 400 [repeat 34 [fd 12 rt 10] rt 90]
+repeat(400, () => {
+    repeat(34, () => {
+        t.forward(12);
+        t.right(10);
+    });
+    t.right(90);
+})
+        `,
+        'siggen': `
+        
+        _.clear();
+        const A = _.slider("Amplitude", 0, 100, 50);
+        const F = _.slider("Frequency", 0, 100, 10);
+
+        for (let i = 0; i < 100; i += 0.01) {
+            _.fill(_.circle(100 + i * 10, 100 + A * _.sin(i * F), 1));
+        }
+        `,
+    }
+
+    $('#editor').textContent = examples[eg];
+}
+
 class Turtle {
     constructor(x, y) {
         this.x = x;
@@ -156,6 +196,7 @@ function resetSliders() {
     for (const slider of unusedSliders) {
         delete sliders[slider]
     }
+    createdSliders = []
 }
 
 function updateSliders() {
@@ -217,6 +258,12 @@ function main() {
     $('#toggleLive').addEventListener('click', () => {
         isLive = !isLive
         $('#toggleLive').dataset.toggled = isLive ? "true" : "false"
+    })
+
+    $('#examples-btn').addEventListener('click', () => {
+        $('#examples').classList.toggle('hidden')
+        $('#drawingCanvas').classList.toggle('hidden')
+        $('#tools').classList.toggle('hidden')
     })
 
     const addedFns = {
